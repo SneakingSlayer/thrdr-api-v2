@@ -1,4 +1,7 @@
 import express, { json } from "express";
+
+import authRoutes from "./routes/auth.routes";
+
 const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
@@ -14,6 +17,8 @@ mongoose.connect(
 
 app.use(json());
 app.use(cors());
+
+app.use(authRoutes);
 
 app.listen(process.env.PORT || 5500, () =>
   console.log("Server Connected at port ", process.env.PORT || 5500)

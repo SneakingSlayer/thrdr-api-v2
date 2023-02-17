@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 
-import bcrypt from "bcrypt";
+import { hash, compare } from "../utils/hash";
+
 import jwt from "jsonwebtoken";
 
 import Users from "../models/users.model";
@@ -36,7 +37,7 @@ export const signIn = async (req: Request, res: Response) => {
     $or: [{ username: username }, { email: email }],
   });
   if (!findUser) return res.status(400).send("Email or Username not found.");
-  const checkPassword = await bcrypt.compare(password, findUser.password);
+  const checkPassword = await compare(password, findUser.password);
   if (!checkPassword) return res.status(400).send("Invalid password.");
   const token = jwt.sign(
     { _id: findUser._id },
@@ -59,8 +60,7 @@ export const signUp = async (req: Request, res: Response) => {
   const findUsername = await Users.findOne({ username: userName });
   if (findUsername) return res.status(400).send("Username already exists.");
 
-  const salt = await bcrypt.genSalt(10);
-  const hashPass = await bcrypt.hash(password, salt);
+  const hashPass = await hash(password);
   const newUser = new Users({ ...req.body, password: hashPass });
   try {
     const savedUser = await newUser.save();
