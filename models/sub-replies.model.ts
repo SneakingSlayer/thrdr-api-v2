@@ -3,11 +3,18 @@ import mongoose from "mongoose";
 const subReplySchema = new mongoose.Schema(
   {
     replyId: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Replies",
     },
     createdBy: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      required: false,
+      ref: "Users",
+    },
+    createdFor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
       required: true,
     },
     message: {

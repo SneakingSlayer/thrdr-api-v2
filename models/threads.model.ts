@@ -11,7 +11,13 @@ const threadSchema = new mongoose.Schema(
       required: true,
     },
     createdBy: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
+      required: false,
+    },
+    createdFor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
       required: true,
     },
     status: {

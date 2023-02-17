@@ -3,11 +3,18 @@ import mongoose from "mongoose";
 const replySchema = new mongoose.Schema(
   {
     threadId: {
-      type: String,
+      type: mongoose.Types.ObjectId,
       required: true,
+      ref: "Threads",
     },
     createdBy: {
-      type: String,
+      type: mongoose.Types.ObjectId,
+      required: false,
+      ref: "Users",
+    },
+    createdFor: {
+      type: mongoose.Types.ObjectId,
+      ref: "Users",
       required: true,
     },
     message: {
