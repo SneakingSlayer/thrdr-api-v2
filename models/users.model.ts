@@ -4,6 +4,7 @@ import {
   isValidEmail,
   checkEmail,
   checkUsername,
+  isStrongPassword,
 } from "../utils/validators";
 const userSchema = new mongoose.Schema(
   {
@@ -78,6 +79,11 @@ const userSchema = new mongoose.Schema(
         {
           validator: (str: string) => isCorrectLength(str, 8, "min"),
           message: "Password must be 8 or more characters.",
+        },
+        {
+          validator: isStrongPassword,
+          message:
+            "Password must be atleast 8 characters and contains alteast 1 special character or 1 number.",
         },
       ],
     },

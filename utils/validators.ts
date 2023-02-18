@@ -22,7 +22,7 @@ export const isValidEmail = (email: string): boolean => {
 
 export const isStrongPassword = (password: string): boolean => {
   const passwordRegex = /[`0-9!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-  return !passwordRegex.test(password);
+  return passwordRegex.test(password);
 };
 
 export const checkEmail = async (email: string): Promise<Boolean> => {
@@ -32,7 +32,7 @@ export const checkEmail = async (email: string): Promise<Boolean> => {
 };
 
 export const checkUsername = async (username: string): Promise<Boolean> => {
-  const hasUsername = await Users.findOne({ username: username });
+  const hasUsername = await Users.findOne({ userName: username });
   if (!hasUsername) return true;
   return false;
 };
