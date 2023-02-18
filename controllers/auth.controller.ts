@@ -33,24 +33,29 @@ interface SignUpProps {
 }
 
 export const signIn = async (req: Request, res: Response) => {
-  const { email, username, password }: SignInProps = req.body;
-  const findUser = await Users.findOne({
-    $or: [{ username: username }, { email: email }],
-  });
-  if (!findUser) return res.status(400).send("Email or Username not found.");
-  const checkPassword = await compare(password, findUser.password);
-  if (!checkPassword) return res.status(400).send("Invalid password.");
-  const token = jwt.sign(
-    { _id: findUser._id },
-    process.env.TOKEN_SECRET as string,
-    {
-      expiresIn: "3d",
-    }
-  );
-  res.header("token", token).send({
-    ...findUser,
-    token: token,
-  });
+  try {
+    const { email, username, password }: SignInProps = req.body;
+    const findUser = await Users.findOne({
+      $or: [{ userName: username }, { email: email }],
+    });
+    console.log(findUser);
+    if (!findUser) throw "Incorrect username or email.";
+    const checkPassword = await compare(password, findUser.password);
+    if (!checkPassword) throw "Incorrect password.";
+    const token = jwt.sign(
+      { _id: findUser._id },
+      process.env.TOKEN_SECRET as string,
+      {
+        expiresIn: "3d",
+      }
+    );
+    res.header("token", token).send({
+      user: findUser,
+      token: token,
+    });
+  } catch (error) {
+    res.status(400).json({ message: error });
+  }
 };
 
 export const signUp = async (req: Request, res: Response) => {
