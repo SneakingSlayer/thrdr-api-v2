@@ -11,7 +11,7 @@ export const getReplies = async (req: Request, res: Response) => {
       .limit((limit as number) * 1)
       .skip(((page as number) - 1) * (limit as number))
       .sort({ createdAt: -1 });
-    const count = await Threads.countDocuments({
+    const count = await Replies.countDocuments({
       threadId: id,
     });
     return res.status(200).json({

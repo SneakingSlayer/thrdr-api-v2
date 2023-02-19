@@ -11,3 +11,4 @@ export const REPLIES_ROUTE = BASE_API + "/replies/:id";
 export const REPLY_ROUTE = BASE_API + "/reply/:id";
 
 export const SUB_REPLIES_ROUTE = BASE_API + "/sub-replies/:id";
+export const SUB_REPLY_ROUTE = BASE_API + "/sub-reply/:id";
