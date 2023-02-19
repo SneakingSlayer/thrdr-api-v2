@@ -13,7 +13,7 @@ export const getThreads = async (req: Request, res: Response) => {
       .skip(((page as number) - 1) * (limit as number))
       .sort({ createdAt: -1 });
     const count = await Threads.countDocuments({
-      createdFor: { userName: id },
+      "createdFor.userName": id,
     });
     return res.status(200).json({
       threads,

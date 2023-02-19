@@ -2,6 +2,7 @@ import express, { json } from "express";
 
 import authRoutes from "./routes/auth.routes";
 import threadRoutes from "./routes/thread.routes";
+import replyThroutes from "./routes/reply.routes";
 
 const app = express();
 const mongoose = require("mongoose");
@@ -21,6 +22,7 @@ app.use(cors());
 
 app.use(authRoutes);
 app.use(threadRoutes);
+app.use(replyThroutes);
 
 app.listen(process.env.PORT || 5500, () =>
   console.log("Server Connected at port ", process.env.PORT || 5500)

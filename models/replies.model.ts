@@ -5,17 +5,34 @@ const replySchema = new mongoose.Schema(
     threadId: {
       type: mongoose.Types.ObjectId,
       required: true,
-      ref: "Threads",
     },
     createdBy: {
-      type: mongoose.Types.ObjectId,
-      required: false,
-      ref: "Users",
+      id: {
+        type: String || null,
+        required: false,
+      },
+      userName: {
+        type: String,
+        required: true,
+      },
+      avatar: {
+        type: String || null,
+        required: false,
+      },
     },
     createdFor: {
-      type: mongoose.Types.ObjectId,
-      ref: "Users",
-      required: true,
+      id: {
+        type: String || null,
+        required: false,
+      },
+      userName: {
+        type: String,
+        required: true,
+      },
+      avatar: {
+        type: String || null,
+        required: false,
+      },
     },
     message: {
       type: String,
