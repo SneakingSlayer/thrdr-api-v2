@@ -114,7 +114,7 @@ const userSchema = new mongoose.Schema(
       },
     },
   },
-  { timestamps: true }
+  { timestamps: true, toJSON: { virtuals: true } }
 );
 
 const Users = mongoose.model("Users", userSchema);

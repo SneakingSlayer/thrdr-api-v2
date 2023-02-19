@@ -10,8 +10,8 @@ import {
 
 const router = express.Router();
 
-router.get(THREADS_ROUTE, getThread);
+router.get(THREAD_ROUTE, getThread);
 router.get(THREADS_ROUTE, getThreads);
-router.post(THREAD_ROUTE, createThread);
+router.post(THREADS_ROUTE, createThread);
 
 export default router;
