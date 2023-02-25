@@ -6,5 +6,5 @@ export const nameGenerator = (): string => {
   const randomAdjective =
     adjectives[Math.floor(Math.random() * adjectives.length)];
   const randomNumber = Math.floor(Math.random() * 99);
-  return randomAnimal + "-" + randomAdjective + "-" + randomNumber;
+  return randomAdjective + "-" + randomAnimal + "-" + randomNumber;
 };
