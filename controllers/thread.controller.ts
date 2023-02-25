@@ -46,7 +46,7 @@ export const createThread = async (req: Request, res: Response) => {
       createdFor: findCreatedFor,
     });
     const result = await newThread.save();
-    res.status(200).send("Thread successfully created.");
+    res.status(200).json({ message: "Thread successfully created." });
   } catch (error) {
     return res.status(404).json({ message: error });
   }
