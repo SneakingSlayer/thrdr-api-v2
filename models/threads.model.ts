@@ -3,7 +3,7 @@ import { isCorrectLength } from "../utils/validators";
 
 const threadSchema = new mongoose.Schema(
   {
-    title: {
+    /* title: {
       type: String,
       required: true,
       validate: [
@@ -16,7 +16,7 @@ const threadSchema = new mongoose.Schema(
           message: "Title must be less than or equal to 150 characters",
         },
       ],
-    },
+    }, */
     description: {
       type: String,
       required: true,
